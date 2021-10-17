@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="StreamViewer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StreamViewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock IsTextSelectionEnabled="True" x:Name="StreamInfo" TextWrapping="WrapWholeWords" Foreground="DodgerBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10"></TextBlock>
+        <CommandBar Grid.Row="4">
+            <AppBarToggleButton x:Name="recordButton" IsEnabled="False" Click="recordButton_Click" Icon="Target" Label="Record" IsChecked="{x:Bind recordActive, Mode=TwoWay}"></AppBarToggleButton>
+            <AppBarButton Icon="Camera" Label="Capture" Click="CaptureImage_Clicked"></AppBarButton>
+            <AppBarButton Icon="Play" IsEnabled="False" Label="Preview" x:Name="PreviewButton" Click="Button_Click"></AppBarButton>
+            <CommandBar.SecondaryCommands>
+                <AppBarToggleButton x:Name="HideIntro" Icon="View" Label="Hide Intro" Click="AppBarToggleButton_Click"></AppBarToggleButton>
+                <AppBarToggleButton x:Name="ResolveURL" Icon="Globe" Label="Resolve URL" IsChecked="{x:Bind resolveURL, Mode=TwoWay}"></AppBarToggleButton>
+                
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarButton Label="Frames / Second" Icon="Calculator">
+                    <AppBarButton.Flyout>
+                        <Flyout Placement="Top">
+                            <StackPanel Margin="25,0,25,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0">Frames/Second:</TextBlock>
+                                    <TextBlock Text="{Binding ElementName=DownloadsListMaxAtSameTime,Path=Value}" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                                <Slider x:Name="DownloadsListMaxAtSameTime" Value="{x:Bind MaxTasksAtSameTime, Mode=TwoWay}" Maximum="60" Minimum="1" StepFrequency="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"></Slider>
+                            </StackPanel>
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+                <AppBarToggleButton Icon="ZoomIn" x:Name="ZoomButton" Click="AppBarToggleButton_Click_1" Label="Enable Zoom"></AppBarToggleButton>
+
+                <AppBarSeparator></AppBarSeparator>
+                <AppBarButton Icon="Help" Click="AppBarButton_Click_1" Label="Help"></AppBarButton>
+                <AppBarButton Icon="Favorite" Click="AppBarButton_Click_2" Label="Privacy"></AppBarButton>
+                <AppBarButton Icon="Contact" Click="AppBarButton_Click" Label="About"></AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        <ProgressBar Visibility="Collapsed" IsIndeterminate="True" Grid.Row="2" HorizontalAlignment="Stretch" x:Name="StreamProgress" Margin="0,5,0,0"></ProgressBar>
+
+        <AutoSuggestBox QueryIcon="World" Grid.Row="3" HorizontalAlignment="Stretch" PlaceholderText="Stream URL" TextChanged="TextBox_TextChanged" x:Name="StreamLink" Margin="10,5,10,6"></AutoSuggestBox>
+        <Grid Grid.Row="1"  Canvas.ZIndex="200" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Opacity="0.8" x:Name="BlankPageBack" VerticalAlignment="Stretch" >
+        </Grid>
+        <Grid Grid.Row="1"  Canvas.ZIndex="300" x:Name="BlankPage" VerticalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,10,10,10">
+                <Viewbox MaxHeight="100"  MaxWidth="100" Margin="0,0,0,10">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xe960;"
+                                              Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" />
+                </Viewbox>
+                <TextBlock Text="Ready to view?"  VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" Margin="0,0,0,15" FontSize="20"/>
+                <TextBlock Text="Paste URL and click play"  VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" Margin="0,0,0,15" FontSize="14"/>
+            </StackPanel>
+        </Grid>
+        <ScrollViewer x:Name="ImageContainer" Grid.Row="1" Margin="15,15,15,15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
+            <Image Stretch="Uniform" x:Name="Preview" ></Image>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,6 @@
+MainPackage=B:\StreamViewer\StreamViewer\bin\ARM\Release\StreamViewer_1.0.0.0_ARM.appx
+SymbolPackage=B:\StreamViewer\StreamViewer\obj\ARM\Release\Symbols\StreamViewer_1.0.0.0_ARM.appxsym
+ResourcePack=B:\StreamViewer\StreamViewer\bin\ARM\Release\StreamViewer_1.0.0.0_scale-100.appx
+ResourcePack=B:\StreamViewer\StreamViewer\bin\ARM\Release\StreamViewer_1.0.0.0_scale-125.appx
+ResourcePack=B:\StreamViewer\StreamViewer\bin\ARM\Release\StreamViewer_1.0.0.0_scale-150.appx
+ResourcePack=B:\StreamViewer\StreamViewer\bin\ARM\Release\StreamViewer_1.0.0.0_scale-400.appx

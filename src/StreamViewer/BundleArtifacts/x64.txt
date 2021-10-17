@@ -1,0 +1,2 @@
+MainPackage=B:\StreamViewer\StreamViewer\bin\x64\Release\StreamViewer_1.0.0.0_x64.appx
+SymbolPackage=B:\StreamViewer\StreamViewer\obj\x64\Release\Symbols\StreamViewer_1.0.0.0_x64.appxsym
